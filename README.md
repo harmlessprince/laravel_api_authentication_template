@@ -1,62 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel API Authentication Template
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel API Authentication Template is a fresh laravel 8 apllication, that makes use of **laravel passport** for authentication.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We all know laravel supports web authentication out of the box using session. But this support is not readily available for API. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+We will have to make use of third party extentsions such as paspport  or sanctum. I decided to create an API template to make development much easier for developers. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Below is the step to follow to make use of this template
 
-## Learning Laravel
+## Step 1: Cloning the repository
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+It is either you download the repo or clone it using your terminal. To clone the repo,
+Navigate to the folder were you will be lunching your project, then run the command below 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
+git clone git@github.com:harmlessprince/laravel_api_authentication_template.git
+```
 
-## Laravel Sponsors
+After cloning successfully, you should see the file downloaded successfully downloaded to the directory you specified. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Step 2: Editing your enviroment variables
+Laravel comes with a file called **.env.example**, with all typical configuration values.
 
-### Premium Partners
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
 
-## Contributing
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_auth_api_template
+DB_USERNAME=root
+DB_PASSWORD=
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
 
-## Code of Conduct
+MEMCACHED_HOST=127.0.0.1
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
 
-## Security Vulnerabilities
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
 
-## License
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+```
+But for you to able to run project on you local machine. We need to do three things
+
+ 1.  Create a file .env in the root of your project.
+
+ 2. Copy that example file contents into the created .env file with this command on linux or just use your normal copying of content technique suitable for your opersting system.
+ ```
+ cp .env.example .env
+ ```
+3. Edit the new .env file, in your text editor. You can change a lot of variables  but the main ones you need to change or add to your .env file are these.
+
+```
+APP_NAME="Basic Laravel Api Auth Template"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=false
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=yourdatabasename
+DB_USERNAME=databaseusername
+DB_PASSWORD=databasepassword
+```
+
+## Step 3: Running composer install
+Let run this "magic" command 
+```
+composer install
+```
+On this step, you may accounter some errors if some pacjages are not compatible wth you php version or extensions. So check or any messages and fix before proceding to the next step.
+
+Incase of success, it looks like something like this
+
+```
+Installing dependencies from lock file (including require-dev)
+Verifying lock file contents can be installed on current platform.
+Nothing to install, update or remove
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+Discovered Package: facade/ignition
+Discovered Package: fideloper/proxy
+Discovered Package: fruitcake/laravel-cors
+Discovered Package: laravel/passport
+Discovered Package: laravel/sail
+Discovered Package: laravel/tinker
+Discovered Package: nesbot/carbon
+Discovered Package: nunomaduro/collision
+Package manifest generated successfully.
+79 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+
+```
+
+## Step 4: Generate application key.
+We need to run this command: 
+```
+php artisan migrate key:generate
+```
+It generates a random key which is automatically added to .env file **APP_KEY** variable.
+
+
+## Step 5:  Passport install
+
+This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
+
+```
+php artisan passport:install
+```
+## Step 5: Migrating DB Schema.
+In order to migrate we need to lunch this
+
+```
+php artisan migrate
+```
+
+then let seed the database.
+```
+php artisan db:seed
+```
+To speed up the process, you may run two commands above as one
+
+```
+php artisan migrate --seed
+```
+
+## Step 6: 
