@@ -145,7 +145,9 @@ This command will create the encryption keys needed to generate secure access to
 ```
 php artisan passport:install
 ```
-## Step 5: Migrating DB Schema.
+
+
+## Step 6: Migrating DB Schema.
 In order to migrate we need to lunch this
 
 ```
@@ -162,4 +164,121 @@ To speed up the process, you may run two commands above as one
 php artisan migrate --seed
 ```
 
-## Step 6: 
+## Created Controllers
+1. AuthController
+This controller consist of three major methods login, register, logout, user.
+
+  ### Login Method 
+  This method is in charge of the login in of user and authentication of user.
+
+   ### Register Method 
+  This method is charge of creating new users for the application.
+
+   ### Logout Method 
+  This method is in charge of the login out of user from the current device. It revokes the authenticated user token.
+
+
+2. ForgotContoller
+This method consist of two methods, forgot and reset.
+   ### forgot
+   This method is in charge of sending forgot password email address to the user.
+
+   ### reset
+   This method updates the user password in the database, it checks if both the token and email supplied is valid.
+
+3. VerificationController 
+This contoller contains of two methods as well.
+   ### verify 
+   This method is used to verify the user email address, It firs checks if the supplied signatures is valid, if user id is exist and then verifies the email address. then redirect the user to specified address.
+
+   ### send
+   This method is for resending verification email address to authenticated users. Some users might careless delete verification email address.
+
+##  Available API Routes. 
+
+1. User 
+Request Description: This request is used for getting authenticated user data
+
+url: /user
+
+method: user
+
+action: get
+
+2. Register 
+Request Description: This request is used for registering users into the database. If user is successfully registerd, email is sent to user for email verification. 
+
+url: /register
+
+method: register
+
+action: post
+
+
+3. Login
+
+Request Description: This request is used login user into the application
+
+url: /login
+
+method: login
+
+action: post
+
+
+
+4. logout
+Request Description: This request is used logout authenticataed user out of the application
+
+url: /logout
+
+method: logout
+
+action: get
+
+5. Forgot password
+
+Request Description: This request is used for send forgot password email to given email address
+
+url: /forgot-password
+
+method: forgot
+
+action: post
+
+6. Reset password 
+
+
+Request Description: This request is used to update the signature and token  password
+
+url: /reste-password
+
+method: reset
+
+action: post
+
+
+### Verffy Email
+
+
+Request Description: This request is used for verifying user email address. 
+
+url: /email/verify/{id}
+
+method: verify
+
+action: get
+
+### Resend Email 
+
+Request Description: This request is used to resend email verification notification to authenticated user 
+
+url: /email/resend
+
+method: verify
+
+action: get
+
+
+
+

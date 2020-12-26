@@ -20,13 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function (){
     Route::get('/user', [AuthController::class, 'user']);
     Route::get('/logout', [AuthController::class, 'logout']);
-
-Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+    Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
-
 Route::post('/forgot-password', [ForgotController::class, 'forgot']);
 Route::post('/reset-password', [ForgotController::class, 'reset']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-
-Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify'); // Make sure to keep this as your route name
+Route::get('/email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify'); // Make sure to keep this as your route name

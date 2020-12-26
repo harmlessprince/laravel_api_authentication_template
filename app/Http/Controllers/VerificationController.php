@@ -11,7 +11,7 @@ class VerificationController extends Controller
     //
     public function verify($user_id, Request $request) {
         if (!$request->hasValidSignature()) {
-            return response()->json(["msg" => "Invalid/Expired url provided."], 401);
+            return response()->json(["message" => "Invalid/Expired url provided."], 401);
         }
 
         /**
@@ -35,7 +35,7 @@ class VerificationController extends Controller
          return response(['message'=>Auth::user()]);
         
         if (auth()->user()->hasVerifiedEmail()) {
-            return response()->json(["msg" => "Email already verified."], 400);
+            return response()->json(["message" => "Email already verified."], 400);
         }
     
         auth()->user()->sendEmailVerificationNotification();
