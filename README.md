@@ -165,28 +165,28 @@ php artisan migrate --seed
 ```
 
 ## Created Controllers
-1. AuthController
+### AuthController
 This controller consist of three major methods login, register, logout, user.
 
-  ### Login Method 
+  #### Login  
   This method is in charge of the login in of user and authentication of user.
 
-   ### Register Method 
+   #### Register 
   This method is charge of creating new users for the application.
 
-   ### Logout Method 
+   #### Logout 
   This method is in charge of the login out of user from the current device. It revokes the authenticated user token.
 
 
-2. ForgotContoller
+### ForgotContoller
 This method consist of two methods, forgot and reset.
-   ### forgot
+   #### forgot
    This method is in charge of sending forgot password email address to the user.
 
-   ### reset
+   #### reset
    This method updates the user password in the database, it checks if both the token and email supplied is valid.
 
-3. VerificationController 
+### VerificationController 
 This contoller contains of two methods as well.
    ### verify 
    This method is used to verify the user email address, It firs checks if the supplied signatures is valid, if user id is exist and then verifies the email address. then redirect the user to specified address.
@@ -196,7 +196,7 @@ This contoller contains of two methods as well.
 
 ##  Available API Routes. 
 
-1. User 
+### User 
 Request Description: This request is used for getting authenticated user data
 
 url: /user
@@ -205,7 +205,7 @@ method: user
 
 action: get
 
-2. Register 
+### Register 
 Request Description: This request is used for registering users into the database. If user is successfully registerd, email is sent to user for email verification. 
 
 url: /register
@@ -215,7 +215,7 @@ method: register
 action: post
 
 
-3. Login
+### Login
 
 Request Description: This request is used login user into the application
 
@@ -227,7 +227,7 @@ action: post
 
 
 
-4. logout
+### logout
 Request Description: This request is used logout authenticataed user out of the application
 
 url: /logout
@@ -236,7 +236,7 @@ method: logout
 
 action: get
 
-5. Forgot password
+### Forgot password
 
 Request Description: This request is used for send forgot password email to given email address
 
@@ -246,7 +246,7 @@ method: forgot
 
 action: post
 
-6. Reset password 
+### Reset password 
 
 
 Request Description: This request is used to update the signature and token  password
