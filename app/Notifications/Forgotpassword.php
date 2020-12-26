@@ -42,7 +42,7 @@ class Forgotpassword extends Notification
     {
         return (new MailMessage)
                     ->line('You requested to chage your password, if you didn\'t do, kindly ignore')
-                    ->action('Change your password', url('/reset'))
+                    ->action('Change your password', url('/reset-password'))
                     ->line('Thank you for using our application!');
     }
 
