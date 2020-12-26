@@ -10,15 +10,17 @@ use Illuminate\Notifications\Notification;
 class Forgotpassword extends Notification
 {
     use Queueable;
+    public $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
         //
+        $this->token = $token;
     }
 
     /**
@@ -41,9 +43,9 @@ class Forgotpassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You requested to chage your password, if you didn\'t do, kindly ignore')
-                    ->action('Change your password', url('/reset-password'))
-                    ->line('Thank you for using our application!');
+            ->line('You are receiving this email because we received a password reset request for your account.')
+            ->action('Reset Password', url(env('APP_URL') . route('password.reset', ['token' => $this->token, 'email' => $notifiable->email], false)))
+            ->line('If you did not request a password reset, no further action is required.');
     }
 
     /**

@@ -30,7 +30,7 @@ class ForgotController extends Controller
                 'token' => $token,
             ]);
             $user = User::firstWhere('email', $email);
-            $user->notify(new Forgotpassword());
+            $user->sendPasswordResetNotification($token);
             return response(['message' => 'Please check your email address'], 200);
         } catch (Exception  $exception) {
             return response(['message' => $exception->getMessage()], 400);
@@ -64,6 +64,6 @@ class ForgotController extends Controller
         //Save user password into the user table
         $user->save();
         
-        return response(['message' => 'success', 'user' => $user]);
+        return response(['message' => 'success!!, Password has been updated.']);
     }
 }

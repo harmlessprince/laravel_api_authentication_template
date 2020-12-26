@@ -22,8 +22,8 @@ Route::middleware('auth:api')->group(function (){
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
-Route::post('/forgot-password', [ForgotController::class, 'forgot']);
-Route::post('/reset-password', [ForgotController::class, 'reset']);
+Route::post('/forgot-password', [ForgotController::class, 'forgot'])->name('password.request');
+Route::post('/reset-password', [ForgotController::class, 'reset'])->name('password.reset');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify'); // Make sure to keep this as your route name
