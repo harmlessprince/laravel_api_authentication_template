@@ -133,7 +133,7 @@ Use the `composer fund` command to find out more!
 ## Step 4: Generate application key.
 We need to run this command: 
 ```
-php artisan migrate key:generate
+php artisan key:generate
 ```
 It generates a random key which is automatically added to .env file **APP_KEY** variable.
 
